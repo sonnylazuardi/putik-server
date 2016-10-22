@@ -32,6 +32,20 @@ app.get('/categories/:categoryId', (req, res) => {
         .catch(error => console.log(error));
 });
 
+app.get('/root_categories', (req, res) => {
+    database.getAllRootCategories()
+        .then(data => res.json(data))
+        .catch(error => console.log(error));
+});
+
+app.get('/root_categories/:rootId', (req, res) => {
+    let rootId = req.params.rootId;
+    
+    database.getAllRootCategories()
+        .then(data => res.json(data))
+        .catch(error => console.log(error));
+});
+
 app.get('/playlists', (req, res) => {
     database.getAllPlaylists()
         .then(data => res.json(data))

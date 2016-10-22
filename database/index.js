@@ -4,6 +4,7 @@ const axios = require('axios');
 
 module.exports = {
     getAllSongs: getAllSongs,
+    getAllRootCategories: getAllRootCategories,
     getAllCategories: getAllCategories,
     getAllPlaylists: getAllPlaylists,
     getPlaylistById: getPlaylistById,
@@ -16,6 +17,12 @@ function getAllSongs() {
         .then(data => transforms(data))
 }
 
+function getAllRootCategories() {
+    return axios.get(FIREBASE_URL + '/root.json')
+        .then(res => res.data)
+        .then(data => transforms(data));
+}
+
 function getAllCategories() {
     return axios.get(FIREBASE_URL + '/categories.json')
         .then(res => res.data)
@@ -26,6 +33,21 @@ function getAllPlaylists() {
     return axios.get(FIREBASE_URL + '/playlists.json')
         .then(res => res.data)
         .then(data => transforms(data));
+}
+
+function getRootCategoryById(rootId) {
+    return axios.all([getAllRootCategories(), getAllCategories()])
+        .then(axios.spread((root, categories) => {
+            return {
+                root: root,
+                categories: categories
+            }
+        }))
+        .then(data => {
+            let root = data.root.find(category => category.slug === rootId)
+            if (root) root.categories = data.categories.filter(category => category.root === root.slug);
+            return root ? root : {}; 
+        });
 }
 
 function getCategoryById(categoryId) {
