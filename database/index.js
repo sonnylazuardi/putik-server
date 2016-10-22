@@ -24,6 +24,13 @@ function getAllSongs() {
     return axios.get(FIREBASE_URL + '/songs.json')
         .then(res => res.data)
         .then(data => transforms(data))
+        .then(songs => songs.map(song => {
+            if (song.chords) {
+                song.chords_piano = song.chords.map(pianoChordMapper);
+                song.chords_guitar = song.chords.map(guitarChordMapper);
+            }
+            return song;
+        }));
 }
 
 function getAllRootCategories() {
@@ -62,15 +69,7 @@ function getRootCategoryById(rootId) {
 
 function getCategoryById(categoryId) {
     return getAllSongs()
-        .then(songs => songs
-            .filter(song => song.category === categoryId)
-            .map(song => {
-                if (song.chords) {
-                    song.chords_piano = song.chords.map(pianoChordMapper);
-                    song.chords_guitar = song.chords.map(guitarChordMapper);
-                }
-                return song;
-            }));
+        .then(songs => songs.filter(song => song.category === categoryId));
 }
 
 function getPlaylistById(playlistId) {
