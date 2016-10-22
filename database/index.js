@@ -7,7 +7,7 @@ module.exports = {
     getAllCategories: getAllCategories,
     getAllPlaylists: getAllPlaylists,
     getPlaylistById: getPlaylistById,
-    getCategoryById: getCategoryById
+    getCategoryById: getCategoryById,
 }
 
 function getAllSongs() {
