@@ -65,7 +65,17 @@ app.get('/playlists/:playlistId', (req, res) => {
 });
 
 app.post('/playlists', (req, res) => {
+    database.putPlaylist(req.body.name)
+        .then(playlistId => res.send(playlistId))
+        .catch(error => console.log(error));
+});
 
+app.post('/playlists/:playlistId', (req, res) => {
+    let playlistId = req.params.playlistId;
+
+    database.putSongIntoPlaylist(playlistId, req.body)
+        .then(ok => res.send(ok))
+        .catch(error => console.log(error));
 });
 
 app.listen(app.get('port'), () => {

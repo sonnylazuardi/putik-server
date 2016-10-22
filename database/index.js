@@ -14,6 +14,8 @@ module.exports = {
     getRootCategoryById: getRootCategoryById,
     getPlaylistById: getPlaylistById,
     getCategoryById: getCategoryById,
+    putPlaylist: putPlaylist,
+    putSongIntoPlaylist: putSongIntoPlaylist
 }
 
 ////
@@ -40,6 +42,17 @@ function getAllPlaylists() {
     return axios.get(FIREBASE_URL + '/playlists.json')
         .then(res => res.data)
         .then(data => transforms(data));
+}
+
+function putPlaylist(name) {
+    return axios.post(FIREBASE_URL + '/playlists.json', {
+        name: name
+    }).then(res => res.data);
+}
+
+function putSongIntoPlaylist(playlistId, song) {
+    return axios.post(FIREBASE_URL + '/playlists/' + playlistId + '/songs.json', song)
+        .then(res => res.data);
 }
 
 function getRootCategoryById(rootId) {
@@ -79,10 +92,6 @@ function getPlaylistById(playlistId) {
             }
             return playlist ? playlist : {};
         });
-}
-
-function addPlaylist(name) {
-    
 }
 
 //// helpers
