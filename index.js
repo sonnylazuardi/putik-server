@@ -1,10 +1,9 @@
 'use strict'
 
-const FIREBASE_URL = 'https://petik-b0273.firebaseio.com';
-
 const express = require('express');
-const axios = require('axios');
 const app = express();
+
+const database = require('./database');
 
 app.set('port', (process.env.PORT || 3000));
 app.use(express.static(__dirname + '/public'));
@@ -13,23 +12,54 @@ app.get('/', (req, res) => {
     res.send('Putik ROCKS!!!');
 })
 
+app.get('/songs', (req, res) => {
+    database.getAllSongs()
+        .then(data => res.json(data))
+        .catch(error => console.log(error));
+});
+
 app.get('/categories', (req, res) => {
-    axios.get(FIREBASE_URL + '/categories.json')
-        .then((data) => {
-            let keys = Object.keys(data.data);
-            res.json(keys.map((k) => data.data[k]));
-        })
-        .catch((error) => console.log(error));
+    database.getAllCategories()
+        .then(data => res.json(data))
+        .catch(error => console.log(error));
+});
+
+app.get('/categories/:categoryId', (req, res) => {
+    let categoryId = req.params.categoryId;
+
+    database.getCategoryById(categoryId)
+        .then(data => res.json(data))
+        .catch(error => console.log(error));
+});
+
+app.get('/root_categories', (req, res) => {
+    database.getAllRootCategories()
+        .then(data => res.json(data))
+        .catch(error => console.log(error));
+});
+
+app.get('/root_categories/:rootId', (req, res) => {
+    let rootId = req.params.rootId;
+    
+    database.getAllRootCategories()
+        .then(data => res.json(data))
+        .catch(error => console.log(error));
+});
+
+app.get('/playlists', (req, res) => {
+    database.getAllPlaylists()
+        .then(data => res.json(data))
+        .catch(error => console.log(error));
+});
+
+app.get('/playlists/:playlistId', (req, res) => {
+    let playlistId = req.params.playlistId;
+    
+    database.getPlaylistById(playlistId)
+        .then(data => res.json(data))
+        .catch(error => console.log(error));
 });
 
 app.listen(app.get('port'), () => {
     console.log('PUTIK will rock at ' + app.get('port'));
 });
-
-function addCategory(db, category) {
-    db.ref('/categories').push({
-        name: 'Hello',
-        genre: 'top50',
-        cover: 'asdasd'
-    });
-}
