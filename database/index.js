@@ -1,4 +1,8 @@
+'use strict';
+
 const FIREBASE_URL = 'https://petik-b0273.firebaseio.com';
+const IMG_CHORD_PIANO = "img/chord/piano";
+const IMG_CHORD_GUITAR = "img/chord/guitar";
 
 const axios = require('axios');
 
@@ -7,9 +11,12 @@ module.exports = {
     getAllRootCategories: getAllRootCategories,
     getAllCategories: getAllCategories,
     getAllPlaylists: getAllPlaylists,
+    getRootCategoryById: getRootCategoryById,
     getPlaylistById: getPlaylistById,
     getCategoryById: getCategoryById,
 }
+
+////
 
 function getAllSongs() {
     return axios.get(FIREBASE_URL + '/songs.json')
@@ -44,9 +51,7 @@ function getRootCategoryById(rootId) {
             }
         }))
         .then(data => {
-            let root = data.root.find(category => category.slug === rootId)
-            if (root) root.categories = data.categories.filter(category => category.root === root.slug);
-            return root ? root : {}; 
+            return data.categories.filter(category => category.root === rootId);
         });
 }
 
@@ -59,9 +64,15 @@ function getCategoryById(categoryId) {
             };
         }))
         .then(data => {
-            let category = data.categories.find(category => category.slug === categoryId);
-            if (category) category.songs = data.songs.filter(song => song.category === categoryId);
-            return category ? category : {};
+            return data.songs
+                .filter(song => song.category === categoryId)
+                .map(song => {
+                    if (song.chords) {
+                        song.chords_piano = song.chords.map(pianoChordMapper);
+                        song.chords_guitar = song.chords.map(guitarChordMapper);
+                    }
+                    return song;
+                });
         });
 }
 
@@ -86,10 +97,32 @@ function getPlaylistById(playlistId) {
         });
 }
 
+//// helpers
+
 function transforms(data) {
     return Object.keys(data).map(slug => {
         let category = data[slug];
         category.slug = slug;
         return category;
     });
+}
+
+function pianoChordMapper(chord) {
+    chord = chord.replace("#", "s");
+    let path = IMG_CHORD_PIANO + chord + ".png";
+    return path;
+}
+
+function guitarChordMapper(chord) {
+    chord = chord.replace("#", "s");
+    let path = IMG_CHORD_GUITAR + chord + ".png"; 
+    return path;
+}
+
+function fileExists(filePath) {
+    try {
+        return fs.statSync(filePath).isFile();
+    } catch (err) {
+        return false;
+    }
 }
