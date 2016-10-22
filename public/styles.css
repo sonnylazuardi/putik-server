@@ -66,7 +66,7 @@ body .demo-blog {
   -webkit-align-items: stretch;
       -ms-flex-align: stretch;
           align-items: stretch;
-  min-height: 360px;
+  /*min-height: 360px;*/
 }
 .demo-blog .mdl-card__title {
   padding: 16px;
@@ -174,11 +174,11 @@ body .demo-blog {
       -ms-flex-order: 0;
           order: 0;
 }
-.demo-blog.is-small-screen .demo-blog__posts > .mdl-card.something-else {
+/*.demo-blog.is-small-screen .demo-blog__posts > .mdl-card.something-else {
   -webkit-order: -1;
       -ms-flex-order: -1;
           order: -1;
-}
+}*/
 .demo-blog .coffee-pic .mdl-card__media {
   background-image: url('images/coffee.jpg');
 }
