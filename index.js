@@ -1,12 +1,16 @@
 'use strict'
 
 const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 const app = express();
 
 const database = require('./database');
 
 app.set('port', (process.env.PORT || 3000));
 app.use(express.static(__dirname + '/public'));
+app.use(cors());
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
     res.send('Putik ROCKS!!!');
@@ -58,6 +62,10 @@ app.get('/playlists/:playlistId', (req, res) => {
     database.getPlaylistById(playlistId)
         .then(data => res.json(data))
         .catch(error => console.log(error));
+});
+
+app.post('/playlists', (req, res) => {
+
 });
 
 app.listen(app.get('port'), () => {

@@ -97,6 +97,10 @@ function getPlaylistById(playlistId) {
         });
 }
 
+function addPlaylist(name) {
+    
+}
+
 //// helpers
 
 function transforms(data) {
