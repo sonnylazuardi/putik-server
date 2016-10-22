@@ -1,0 +1,27 @@
+{
+  "name": "putik-server",
+  "version": "1.0.0",
+  "description": "putik server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sonnylazuardi/putik-server.git"
+  },
+  "keywords": [
+    "putik",
+    "music"
+  ],
+  "author": "sonnylazuardi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sonnylazuardi/putik-server/issues"
+  },
+  "homepage": "https://github.com/sonnylazuardi/putik-server#readme",
+  "dependencies": {
+    "axios": "^0.15.2",
+    "express": "^4.14.0"
+  }
+}
