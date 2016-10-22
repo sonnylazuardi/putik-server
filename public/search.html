@@ -1,0 +1,108 @@
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Website of Putik (Pujian Untuk Kristus).">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Putik - Pujian Untuk Kristus</title>
+
+    <link rel="shortcut icon" href="images/favicon.png">
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="theme.min.css">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <!-- The drawer is always open in large screens. The header is always shown,
+      even in small screens. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer
+                mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <div class="mdl-layout-spacer"></div>
+          <!-- <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                      mdl-textfield--floating-label mdl-textfield--align-right">
+            <label class="mdl-button mdl-js-button mdl-button--icon"
+                   for="fixed-header-drawer-exp">
+              <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+              <input class="mdl-textfield__input" type="text" name="sample"
+                     id="fixed-header-drawer-exp">
+            </div>
+          </div> -->
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">PUTIK</span>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="http://getputik.com">Back</a>
+          <a class="mdl-navigation__link" href="">Install</a>
+        </nav>
+      </div>
+      <main class="mdl-layout__content">
+        <div class="page-content">
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col album" align="center">
+              <img src="img/1000_reasons.jpg" class="album-image">
+              <h3 class="text">1000 Reasons</h3>
+              <h5 class="text">Matt Redman</h5>              
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                Chords
+              </button>              
+              <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" href="https://www.youtube.com/watch?v=DXDGE_lRI0E" target="_blank">
+                Listen
+              </a>              
+            </div>
+            <div class="mdl-cell mdl-cell--4-col album" align="center">
+              <img src="img/alive.jpg" class="album-image">
+              <h3 class="text">Alive</h3>
+              <h5 class="text">Hillsong</h5>              
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                Chords
+              </button>              
+              <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" href="https://www.youtube.com/watch?v=qEvEVALLjNQ" target="_blank">
+                Listen
+              </a>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col album" align="center">
+              <img src="img/good_good_father.jpg" class="album-image">
+              <h3 class="text">Good Good Father</h3>
+              <h5 class="text">Chris Tomlin</h5>              
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="window.location.href = 'songs/good_good_father.html'">
+                Chords
+              </button>              
+              <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" href="https://www.youtube.com/watch?v=CqybaIesbuA" target="_blank">
+                Listen
+              </a>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>    
+  </body>
+  <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>  
+</html>
