@@ -43,37 +43,21 @@ function getAllPlaylists() {
 }
 
 function getRootCategoryById(rootId) {
-    return axios.all([getAllRootCategories(), getAllCategories()])
-        .then(axios.spread((root, categories) => {
-            return {
-                root: root,
-                categories: categories
-            }
-        }))
-        .then(data => {
-            return data.categories.filter(category => category.root === rootId);
-        });
+    return getAllCategories()
+        .then(catefories => catefories.filter(category => category.root === rootId));
 }
 
 function getCategoryById(categoryId) {
-    return axios.all([getAllCategories(), getAllSongs()])
-        .then(axios.spread((categories, songs) => {
-            return {
-                categories: categories,
-                songs: songs
-            };
-        }))
-        .then(data => {
-            return data.songs
-                .filter(song => song.category === categoryId)
-                .map(song => {
-                    if (song.chords) {
-                        song.chords_piano = song.chords.map(pianoChordMapper);
-                        song.chords_guitar = song.chords.map(guitarChordMapper);
-                    }
-                    return song;
-                });
-        });
+    return getAllSongs()
+        .then(songs => songs
+            .filter(song => song.category === categoryId)
+            .map(song => {
+                if (song.chords) {
+                    song.chords_piano = song.chords.map(pianoChordMapper);
+                    song.chords_guitar = song.chords.map(guitarChordMapper);
+                }
+                return song;
+            }));
 }
 
 function getPlaylistById(playlistId) {
