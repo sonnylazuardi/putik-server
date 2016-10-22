@@ -14,6 +14,8 @@ module.exports = {
     getRootCategoryById: getRootCategoryById,
     getPlaylistById: getPlaylistById,
     getCategoryById: getCategoryById,
+    putPlaylist: putPlaylist,
+    putSongIntoPlaylist: putSongIntoPlaylist
 }
 
 ////
@@ -22,6 +24,13 @@ function getAllSongs() {
     return axios.get(FIREBASE_URL + '/songs.json')
         .then(res => res.data)
         .then(data => transforms(data))
+        .then(songs => songs.map(song => {
+            if (song.chords) {
+                song.chords_piano = song.chords.map(pianoChordMapper);
+                song.chords_guitar = song.chords.map(guitarChordMapper);
+            }
+            return song;
+        }));
 }
 
 function getAllRootCategories() {
@@ -42,38 +51,25 @@ function getAllPlaylists() {
         .then(data => transforms(data));
 }
 
+function putPlaylist(name) {
+    return axios.post(FIREBASE_URL + '/playlists.json', {
+        name: name
+    }).then(res => res.data);
+}
+
+function putSongIntoPlaylist(playlistId, song) {
+    return axios.post(FIREBASE_URL + '/playlists/' + playlistId + '/songs.json', song)
+        .then(res => res.data);
+}
+
 function getRootCategoryById(rootId) {
-    return axios.all([getAllRootCategories(), getAllCategories()])
-        .then(axios.spread((root, categories) => {
-            return {
-                root: root,
-                categories: categories
-            }
-        }))
-        .then(data => {
-            return data.categories.filter(category => category.root === rootId);
-        });
+    return getAllCategories()
+        .then(catefories => catefories.filter(category => category.root === rootId));
 }
 
 function getCategoryById(categoryId) {
-    return axios.all([getAllCategories(), getAllSongs()])
-        .then(axios.spread((categories, songs) => {
-            return {
-                categories: categories,
-                songs: songs
-            };
-        }))
-        .then(data => {
-            return data.songs
-                .filter(song => song.category === categoryId)
-                .map(song => {
-                    if (song.chords) {
-                        song.chords_piano = song.chords.map(pianoChordMapper);
-                        song.chords_guitar = song.chords.map(guitarChordMapper);
-                    }
-                    return song;
-                });
-        });
+    return getAllSongs()
+        .then(songs => songs.filter(song => song.category === categoryId));
 }
 
 function getPlaylistById(playlistId) {
@@ -108,12 +104,14 @@ function transforms(data) {
 }
 
 function pianoChordMapper(chord) {
+    if (!chord) chord = '';
     chord = chord.replace("#", "s");
     let path = IMG_CHORD_PIANO + chord + ".png";
     return path;
 }
 
 function guitarChordMapper(chord) {
+    if (!chord) chord = '';
     chord = chord.replace("#", "s");
     let path = IMG_CHORD_GUITAR + chord + ".png"; 
     return path;
