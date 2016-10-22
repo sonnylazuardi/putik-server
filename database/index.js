@@ -62,15 +62,15 @@ function getCategoryById(categoryId) {
             };
         }))
         .then(data => {
-            let category = data.categories.find(category => category.slug === categoryId);
-            if (category) category.songs = data.songs
+            return data.songs
                 .filter(song => song.category === categoryId)
                 .map(song => {
-                    song.chords_piano = song.chords.map(pianoChordMapper);
-                    song.chords_guitar = song.chords.map(guitarChordMapper);
+                    if (song.chords) {
+                        song.chords_piano = song.chords.map(pianoChordMapper);
+                        song.chords_guitar = song.chords.map(guitarChordMapper);
+                    }
                     return song;
                 });
-            return category ? category : {};
         });
 }
 
