@@ -104,12 +104,14 @@ function transforms(data) {
 }
 
 function pianoChordMapper(chord) {
+    if (!chord) chord = '';
     chord = chord.replace("#", "s");
     let path = IMG_CHORD_PIANO + chord + ".png";
     return path;
 }
 
 function guitarChordMapper(chord) {
+    if (!chord) chord = '';
     chord = chord.replace("#", "s");
     let path = IMG_CHORD_GUITAR + chord + ".png"; 
     return path;
