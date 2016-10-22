@@ -52,7 +52,22 @@ app.get('/root_categories/:rootId', (req, res) => {
 
 app.get('/playlists', (req, res) => {
     database.getAllPlaylists()
-        .then(data => res.json(data))
+        .then(data => {
+            var playlists = data.map(playlist => {
+                var keys = Object.keys(playlist.songs || {});
+                var playlist = Object.assign(
+                    {},
+                    playlist,
+                    { songs: keys.map(key => {
+                        var result = playlist.songs[key];
+                        result.slug = key;
+                        return result;
+                        })
+                    });
+                return playlist;
+            });
+            res.json(playlists)
+        })
         .catch(error => console.log(error));
 });
 
