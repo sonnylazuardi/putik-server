@@ -9,6 +9,7 @@ module.exports = {
     getAllRootCategories: getAllRootCategories,
     getAllCategories: getAllCategories,
     getAllPlaylists: getAllPlaylists,
+    getRootCategoryById: getRootCategoryById,
     getPlaylistById: getPlaylistById,
     getCategoryById: getCategoryById,
 }
@@ -48,9 +49,7 @@ function getRootCategoryById(rootId) {
             }
         }))
         .then(data => {
-            let root = data.root.find(category => category.slug === rootId)
-            if (root) root.categories = data.categories.filter(category => category.root === root.slug);
-            return root ? root : {}; 
+            return data.categories.filter(category => category.root === rootId);
         });
 }
 

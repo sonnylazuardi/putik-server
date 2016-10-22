@@ -41,7 +41,7 @@ app.get('/root_categories', (req, res) => {
 app.get('/root_categories/:rootId', (req, res) => {
     let rootId = req.params.rootId;
     
-    database.getAllRootCategories()
+    database.getRootCategoryById(rootId)
         .then(data => res.json(data))
         .catch(error => console.log(error));
 });
