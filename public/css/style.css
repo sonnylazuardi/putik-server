@@ -1,0 +1,17 @@
+body {
+	background-color: #f57f20;
+	color: #fff;
+}
+div.content {
+	float: right;
+}
+button {
+	width: 100% !important;
+}
+#logo {
+	width: 80%
+}
+.trap-nation {
+	width: 136px;
+    height: 37px;
+}
