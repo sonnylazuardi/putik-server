@@ -85,6 +85,13 @@ app.post('/playlists', (req, res) => {
         .catch(error => console.log(error));
 });
 
+app.post('/activePlaylist', (req, res) => {
+    console.log('activePlaylist', req.body.name);
+    database.putActivePlaylist(req.body.name)
+        .then(data => res.send(data))
+        .catch(error => console.log(error));
+});
+
 app.post('/playlists/:playlistId', (req, res) => {
     let playlistId = req.params.playlistId;
 

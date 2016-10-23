@@ -57,6 +57,14 @@ function putPlaylist(name) {
     }).then(res => res.data);
 }
 
+function putActivePlaylist(name) {
+    console.log(name);
+    return axios.patch(FIREBASE_URL + '/.json', {
+        activePlaylist: name
+    }).then(res => res.data)
+    .catch(err => console.log(err));
+}
+
 function putSongIntoPlaylist(playlistId, song) {
     return axios.post(FIREBASE_URL + '/playlists/' + playlistId + '/songs.json', song)
         .then(res => res.data);
