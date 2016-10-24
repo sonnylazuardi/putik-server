@@ -1,8 +1,8 @@
 'use strict';
 
 const FIREBASE_URL = 'https://petik-b0273.firebaseio.com';
-const IMG_CHORD_PIANO = "img/chord/piano";
-const IMG_CHORD_GUITAR = "img/chord/guitar";
+const IMG_CHORD_PIANO = "img/chord/piano/";
+const IMG_CHORD_GUITAR = "img/chord/guitar/";
 
 const axios = require('axios');
 
