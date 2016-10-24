@@ -26,6 +26,7 @@ function getAllSongs() {
         .then(data => transforms(data))
         .then(songs => songs.map(song => {
             if (song.chords) {
+                song.chords = song.chords.filter(chord => chord);
                 song.chords_piano = song.chords.map(pianoChordMapper);
                 song.chords_guitar = song.chords.map(guitarChordMapper);
             }
