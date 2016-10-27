@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>PUTIK Admin</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/material.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script>	
+	<script src="js/jquery.min.js"></script>
+	<script src="js/material.min.js"></script>
+	<script src="js/main.js"></script>	
+</head>
+<body>
+	<!-- Uses a header that scrolls with the text, rather than staying
+	  locked at the top -->
+	<div class="mdl-layout mdl-js-layout">
+	  <header class="mdl-layout__header mdl-layout__header--scroll">
+	    <div class="mdl-layout__header-row">
+	      <!-- Title -->
+	      <span class="mdl-layout-title">PUTIK</span>
+	      <!-- Add spacer, to align navigation to the right -->
+	      <div class="mdl-layout-spacer"></div>
+	      <!-- Navigation -->
+	      <nav class="mdl-navigation">
+	        <a class="mdl-navigation__link" href="chords.html">Chords</a>
+	        <a class="mdl-navigation__link" href="cover.html">Cover</a>
+	        <a class="mdl-navigation__link" href="lyrics.html">Lyrics</a>
+	        <a class="mdl-navigation__link" href="media.html">Media</a>
+	      </nav>
+	    </div>
+	  </header>
+	  <div class="mdl-layout__drawer">
+	    <span class="mdl-layout-title">PUTIK</span>
+	    <nav class="mdl-navigation">
+	      <a class="mdl-navigation__link" href="chords.html">Chords</a>
+	      <a class="mdl-navigation__link" href="cover.html">Cover</a>
+	      <a class="mdl-navigation__link" href="lyrics.html">Lyrics</a>
+	      <a class="mdl-navigation__link" href="media.html">Media</a>
+	    </nav>
+	  </div>
+	  <main class="mdl-layout__content">
+	  	 <br><br>
+	     <div class="page-content">
+	     	<div align="center">
+	     		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+	     		  <input class="mdl-textfield__input" type="text" id="song-slug">
+	     		  <label class="mdl-textfield__label" for="song-slug">Song Slug</label>
+	     		</div><br>
+	     		<button class="mdl-button mdl-js-button mdl-button--accent" onclick="getLyrics()">
+				  Submit
+				</button>
+	     	</div>
+	     	<div class="mdl-grid" align="center">
+	     	  <div class="mdl-cell mdl-cell--6-col">
+	     	  	<h3>Old Lyrics: </h3>
+	     	  	<p id="old-lyrics" align="left"></p>
+	     	  </div>
+	     	  <div class="mdl-cell mdl-cell--6-col">
+	     	  	<h3>Update Lyrics</h3>
+	     	  	<div class="mdl-textfield mdl-js-textfield">
+	     	  	  <textarea class="mdl-textfield__input" type="text" rows="30" id="new-lyrics" ></textarea>
+	     	  	  <label class="mdl-textfield__label" for="new-lyrics">New Lyrics</label>
+	     	  	</div><br>
+	     	  	<button class="mdl-button mdl-js-button mdl-button--colored">
+	     	  	  Update
+	     	  	</button>
+	     	  </div>
+	     	</div>	     	
+	    </div>
+	  </main>
+	</div>	
+</body>
+</html>
