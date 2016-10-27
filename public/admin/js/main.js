@@ -14,18 +14,10 @@ function getLyrics() {
 	var song = $('#song-slug').val()
     $.getJSON("http://getputik.com/songs/", function(result){
         var api = result.filter(function(song){
-        	return song.slug == 'how_great_is_our_god';
+        	return song.slug == song;
         })[0];        
         var lyrics = api.lyrics_only.replace(/\\n/g, '<br>');
         $('#old-lyrics').html(lyrics);
     });
 }
 
-function changeLyrics(){
-	'use strict';
-	firebase.database().ref('users/' + userId).set({
-	  username: name,
-	  email: email,
-	  profile_picture : imageUrl
-	});
-}
