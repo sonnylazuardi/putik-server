@@ -44,10 +44,20 @@
 	  <main class="mdl-layout__content">
 	  	 <br><br>
 	     <div class="page-content" align="center">
-	     	<h3>Son, gue belom tau nih gimana struktur form yg ini, coming soon ajalah this feature.</h3>
+	     	<h3>How do I use this thing?</h3>
+	     	<p>Easy, just paste the new youtube link.</code></p>
 	     	<hr>
-	     	<br><br><br>
-	     	<h6>when you're lazy as hell.</h6>
+     		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+     		  <input class="mdl-textfield__input" type="text" id="song-slug">
+     		  <label class="mdl-textfield__label" for="song-slug">Song Slug</label>
+     		</div><br>
+     		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+     		  <input class="mdl-textfield__input" type="text" id="new-yt-link">
+     		  <label class="mdl-textfield__label" for="new-yt-link">The New YouTube Link</label>
+     		</div><br>
+     		<button class="mdl-button mdl-js-button mdl-button--accent" onclick="updateYT()">
+			  Submit
+			</button>
 	    </div>
 	  </main>
 	</div>	

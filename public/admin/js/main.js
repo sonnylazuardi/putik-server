@@ -21,3 +21,22 @@ function getLyrics() {
     });
 }
 
+function updateCover() {
+	'use strict';
+	var slug = $('#song-slug').val(),
+		new_image = $('#new_cover').val();
+
+	firebase.database().ref('songs/' + slug).set({
+		cover: new_image
+	});
+}
+
+function updateYT() {
+	'use strict';
+	var slug = $('#song-slug').val(),
+		new_link = $('#new-yt-link').val();
+
+	firebase.database().ref('songs/' + slug).set({
+		media: new_link
+	});
+}
