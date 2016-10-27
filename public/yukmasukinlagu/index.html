@@ -4,10 +4,14 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>PUTIK Admin</title>
+	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/material.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script>	
+	<script src="js/jquery.min.js"></script>
 	<script src="js/material.min.js"></script>
+	<script src="js/main.js"></script>	
 </head>
 <body>
 	<!-- Simple header with fixed tabs. -->
@@ -20,23 +24,99 @@
 	    </div>
 	    <!-- Tabs -->
 	    <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-	      <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Tab 1</a>
-	      <a href="#fixed-tab-2" class="mdl-layout__tab">Tab 2</a>
-	      <a href="#fixed-tab-3" class="mdl-layout__tab">Tab 3</a>
+	      <a href="#chords" class="mdl-layout__tab">Chords</a>
+	      <a href="#cover" class="mdl-layout__tab">Cover</a>
+	      <a href="#lyrics" class="mdl-layout__tab">Lyrics</a>
+	      <a href="#media" class="mdl-layout__tab">Media</a>
 	    </div>
 	  </header>
 	  <div class="mdl-layout__drawer">
-	    <span class="mdl-layout-title">Title</span>
+	    <span class="mdl-layout-title">PUTIK</span>
+	    <!-- <nav class="mdl-navigation">
+	      <a class="mdl-navigation__link" href="#chords">Chords</a>
+	      <a class="mdl-navigation__link" href="#cover">Cover</a>
+	      <a class="mdl-navigation__link" href="#lyrics">Lyrics</a>
+	      <a class="mdl-navigation__link" href="#media">Media</a>
+	    </nav> -->
 	  </div>
 	  <main class="mdl-layout__content">
-	    <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
-	      <div class="page-content"><!-- Your content goes here --></div>
+	    <section class="mdl-layout__tab-panel is-active">
+	      <div class="page-content" align="center">
+	      	<h3>Welcome to the admin page of PUTIK!</h3>
+	      </div>
 	    </section>
-	    <section class="mdl-layout__tab-panel" id="fixed-tab-2">
-	      <div class="page-content"><!-- Your content goes here --></div>
+	    <section class="mdl-layout__tab-panel" id="chords">
+	      <div class="page-content" align="center">
+	      	<h3>Son, gue belom tau nih gimana struktur form yg ini, coming soon ajalah this feature.</h3>
+	      	<hr>
+	      	<br><br><br>
+	      	<h6>when you're lazy as hell.</h6>
+	      </div>
 	    </section>
-	    <section class="mdl-layout__tab-panel" id="fixed-tab-3">
-	      <div class="page-content"><!-- Your content goes here --></div>
+	    <section class="mdl-layout__tab-panel" id="cover">
+	      <div class="page-content" align="center">
+	     	<h3>How do I use this thing?</h3>
+	     	<p>You're going to insert the new cover of the song to the <code>img/</code> directory,<br> and then you're going to insert the new path to the input down below,<br> structure: <code>img/ + the new image file name</code>,<br> example: <code>img/1000_reasons.jpg</code></p>
+	     	<hr>
+     		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+     		  <input class="mdl-textfield__input" type="text" id="song-slug">
+     		  <label class="mdl-textfield__label" for="song-slug">Song Slug</label>
+     		</div><br>
+     		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+     		  <input class="mdl-textfield__input" type="text" id="new-cover">
+     		  <label class="mdl-textfield__label" for="new-cover">The New Image File Path</label>
+     		</div><br>
+     		<button class="mdl-button mdl-js-button mdl-button--accent" onclick="updateCover()">
+			  Submit
+			</button>
+	      </div>
+	    </section>
+	    <section class="mdl-layout__tab-panel" id="lyrics">
+	      <div class="page-content" align="center">
+  	     	<div align="center">
+  	     		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+  	     		  <input class="mdl-textfield__input" type="text" id="song-slug">
+  	     		  <label class="mdl-textfield__label" for="song-slug">Song Slug</label>
+  	     		</div><br>
+  	     		<button class="mdl-button mdl-js-button mdl-button--accent" onclick="getLyrics()">
+  				  Submit
+  				</button>
+  	     	</div>
+  	     	<div class="mdl-grid" align="center">
+  	     	  <div class="mdl-cell mdl-cell--6-col">
+  	     	  	<h3>Old Lyrics: </h3>
+  	     	  	<p id="old-lyrics" align="left"></p>
+  	     	  </div>
+  	     	  <div class="mdl-cell mdl-cell--6-col">
+  	     	  	<h3>Update Lyrics</h3>
+  	     	  	<div class="mdl-textfield mdl-js-textfield">
+  	     	  	  <textarea class="mdl-textfield__input" type="text" rows="30" id="new-lyrics" ></textarea>
+  	     	  	  <label class="mdl-textfield__label" for="new-lyrics">New Lyrics</label>
+  	     	  	</div><br>
+  	     	  	<button class="mdl-button mdl-js-button mdl-button--colored">
+  	     	  	  Update
+  	     	  	</button>
+  	     	  </div>
+  	     	</div>
+	      </div>
+	    </section>
+	    <section class="mdl-layout__tab-panel" id="media">
+	      <div class="page-content" align="center">
+	     	<h3>How do I use this thing?</h3>
+	     	<p>Easy, just paste the new youtube link.</code></p>
+	     	<hr>
+     		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+     		  <input class="mdl-textfield__input" type="text" id="song-slug">
+     		  <label class="mdl-textfield__label" for="song-slug">Song Slug</label>
+     		</div><br>
+     		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+     		  <input class="mdl-textfield__input" type="text" id="new-yt-link">
+     		  <label class="mdl-textfield__label" for="new-yt-link">The New YouTube Link</label>
+     		</div><br>
+     		<button class="mdl-button mdl-js-button mdl-button--accent" onclick="updateYT()">
+			  Submit
+			</button>
+	      </div>
 	    </section>
 	  </main>
 	</div>
