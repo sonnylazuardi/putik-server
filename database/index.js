@@ -1,8 +1,8 @@
 'use strict';
 
 const FIREBASE_URL = 'https://petik-b0273.firebaseio.com';
-const IMG_CHORD_PIANO = "img/chord/piano";
-const IMG_CHORD_GUITAR = "img/chord/guitar";
+const IMG_CHORD_PIANO = "img/chord/piano/";
+const IMG_CHORD_GUITAR = "img/chord/guitar/";
 
 const axios = require('axios');
 
@@ -26,6 +26,7 @@ function getAllSongs() {
         .then(data => transforms(data))
         .then(songs => songs.map(song => {
             if (song.chords) {
+                song.chords = song.chords.filter(chord => chord);
                 song.chords_piano = song.chords.map(pianoChordMapper);
                 song.chords_guitar = song.chords.map(guitarChordMapper);
             }
@@ -55,6 +56,14 @@ function putPlaylist(name) {
     return axios.post(FIREBASE_URL + '/playlists.json', {
         name: name
     }).then(res => res.data);
+}
+
+function putActivePlaylist(name) {
+    console.log(name);
+    return axios.patch(FIREBASE_URL + '/.json', {
+        activePlaylist: name
+    }).then(res => res.data)
+    .catch(err => console.log(err));
 }
 
 function putSongIntoPlaylist(playlistId, song) {

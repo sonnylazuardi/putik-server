@@ -5,13 +5,11 @@ $(document).ready(function(){
         })[0];
 
         var piano_chords = api.chords_piano.map(function(chord){
-        	chord_piano = chord.replace('img/chord/piano', '../img/chord/piano/');
         	final_result_piano = '<img src=\"'+chord_piano+'\" />'
         	return final_result_piano;
         });
 
         var guitar_chords = api.chords_guitar.map(function(chord){
-        	chord_guitar = chord.replace('img/chord/guitar', '../img/chord/guitar/');
         	final_result_guitar = '<img src=\"'+chord_guitar+'\" />'
         	return final_result_guitar;
         });

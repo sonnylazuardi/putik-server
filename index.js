@@ -52,7 +52,22 @@ app.get('/root_categories/:rootId', (req, res) => {
 
 app.get('/playlists', (req, res) => {
     database.getAllPlaylists()
-        .then(data => res.json(data))
+        .then(data => {
+            var playlists = data.map(playlist => {
+                var keys = Object.keys(playlist.songs || {});
+                var playlist = Object.assign(
+                    {},
+                    playlist,
+                    { songs: keys.map(key => {
+                        var result = playlist.songs[key];
+                        result.slug = key;
+                        return result;
+                        })
+                    });
+                return playlist;
+            });
+            res.json(playlists)
+        })
         .catch(error => console.log(error));
 });
 
@@ -67,6 +82,13 @@ app.get('/playlists/:playlistId', (req, res) => {
 app.post('/playlists', (req, res) => {
     database.putPlaylist(req.body.name)
         .then(playlistId => res.send(playlistId))
+        .catch(error => console.log(error));
+});
+
+app.post('/activePlaylist', (req, res) => {
+    console.log('activePlaylist', req.body.name);
+    database.putActivePlaylist(req.body.name)
+        .then(data => res.send(data))
         .catch(error => console.log(error));
 });
 
