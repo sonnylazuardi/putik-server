@@ -10,16 +10,41 @@
 	<script src="js/material.min.js"></script>
 </head>
 <body>
-	<!-- Uses a header that scrolls with the text, rather than staying
-	  locked at the top -->
-	<div class="mdl-layout mdl-js-layout">
-	  <header class="mdl-layout__header mdl-layout__header--scroll">
+	<!-- Simple header with fixed tabs. -->
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
+	            mdl-layout--fixed-tabs">
+	  <header class="mdl-layout__header">
 	    <div class="mdl-layout__header-row">
 	      <!-- Title -->
-	      <span class="mdl-layout-title">PUTIK</span>
-	      <!-- Add spacer, to align navigation to the right -->
-	      <div class="mdl-layout-spacer"></div>
-	      <!-- Navigation -->
+	      <span class="mdl-layout-title">Title</span>
+	    </div>
+	    <!-- Tabs -->
+	    <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+	      <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Tab 1</a>
+	      <a href="#fixed-tab-2" class="mdl-layout__tab">Tab 2</a>
+	      <a href="#fixed-tab-3" class="mdl-layout__tab">Tab 3</a>
+	    </div>
+	  </header>
+	  <div class="mdl-layout__drawer">
+	    <span class="mdl-layout-title">Title</span>
+	  </div>
+	  <main class="mdl-layout__content">
+	    <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+	      <div class="page-content"><!-- Your content goes here --></div>
+	    </section>
+	    <section class="mdl-layout__tab-panel" id="fixed-tab-2">
+	      <div class="page-content"><!-- Your content goes here --></div>
+	    </section>
+	    <section class="mdl-layout__tab-panel" id="fixed-tab-3">
+	      <div class="page-content"><!-- Your content goes here --></div>
+	    </section>
+	  </main>
+	</div>
+	<!-- <div class="mdl-layout mdl-js-layout">
+	  <header class="mdl-layout__header mdl-layout__header--scroll">
+	    <div class="mdl-layout__header-row">
+	      <span class="mdl-layout-title">PUTIK</span>	      
+	      <div class="mdl-layout-spacer"></div>	      
 	      <nav class="mdl-navigation">
 	        <a class="mdl-navigation__link" href="chords.html">Chords</a>
 	        <a class="mdl-navigation__link" href="cover.html">Cover</a>
@@ -45,6 +70,6 @@
 	     	<h2>Happy Costumizing!</h2>
 	    </div>
 	  </main>
-	</div>
+	</div> -->
 </body>
 </html>
