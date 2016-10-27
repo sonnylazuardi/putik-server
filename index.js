@@ -101,5 +101,5 @@ app.post('/playlists/:playlistId', (req, res) => {
 });
 
 app.listen(app.get('port'), () => {
-    console.log('PUTIK will rock at ' + app.get('port'));
+    console.log('PUTIK is currently running at: ' + app.get('port'));
 });
