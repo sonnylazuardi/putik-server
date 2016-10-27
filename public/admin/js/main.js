@@ -7,6 +7,7 @@ storageBucket: "petik-b0273.appspot.com",
 messagingSenderId: "1031285938511"
 };
 firebase.initializeApp(config);
+
 var ref = firebase.database();
 
 function getLyrics() {
@@ -26,7 +27,7 @@ function updateCover() {
 	var slug = $('#song-slug').val(),
 		new_image = $('#new_cover').val();
 
-	firebase.database().ref('songs/' + slug).set({
+	firebase.database().ref('songs/' + slug).update({
 		cover: new_image
 	});
 }
@@ -36,7 +37,7 @@ function updateYT() {
 	var slug = $('#song-slug').val(),
 		new_link = $('#new-yt-link').val();
 
-	firebase.database().ref('songs/' + slug).set({
+	firebase.database().ref('songs/' + slug).update({
 		media: new_link
 	});
 }
