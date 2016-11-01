@@ -101,5 +101,5 @@ app.post('/playlists/:playlistId', (req, res) => {
 });
 
 app.listen(app.get('port'), () => {
-    console.log('PUTIK is running at localhost:' + app.get('port'));
+    console.log('I'm running at localhost:' + app.get('port'));
 });
