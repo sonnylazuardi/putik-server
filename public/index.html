@@ -1,5 +1,3 @@
-
-
 <!doctype html>
 <!--
   Material Design Lite
@@ -36,6 +34,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="theme.min.css">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+    <script src="main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   </head>
   <body>
     <div class="demo-blog mdl-layout mdl-js-layout has-drawer is-upgraded">
@@ -61,7 +62,7 @@
               <h3><a href="entry.html">Why we create Putik?</a></h3>
             </div>
             <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-              We believe that there is no greater experience than when the people of God come together in unity and worship Jesus. Sadly, the praise-and-worship preparation of a service usually was taken for granted. Putik (Pujian Untuk Kristus), a christian song lyrics and chords app, will help you, cell groups and churches to prepare the right playlists by providing complete songs directory for your next communion. Sing His praises forever more!
+              We believe that there is no greater experience than when the people of God come together in unity and worship Jesus.<br><br> Sadly, the praise-and-worship preparation of a service usually was taken for granted.<br><br> Putik (Pujian Untuk Kristus), a christian song lyrics and chords app, will help you, cell groups and churches to prepare the right playlists by providing complete songs directory for your next communion.<br><br> Sing His praises forever more!
             </div>
           </div>
           <div class="mdl-card something-else mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop">
@@ -78,7 +79,7 @@
               </div>      
             </div>
             <div class="mdl-card__supporting-text meta meta--fill mdl-color-text--grey-600">
-              <input type="submit" value="I'm In!" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="subscribe()">I'm In!</button>
             </div>
           </div>                              
         </div>
